@@ -1,0 +1,52 @@
+<h2 class="text-center">CUSTOMER INFO</h2>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">All Customers</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table *ngIf="!loadData" id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Registration Date</th>
+                    <th>Activation Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let c of customer index as i">
+                    <th>{{i+1}}</th>
+                    <td>{{c.name}}</td>
+                    <td>{{c.username}}</td>
+                    <td>{{c.contact}}</td>
+                    <td>{{c.customerRegistrationDate}}</td>
+                    <td>
+                        <div class="form-check form-switch" *ngIf="c.username!='admin@gmail.com' && action">
+                            <mat-slide-toggle (change)="activationStatus(c.customerId)"
+                              [checked]="c.enabled" *ngIf="!c.enabled">DIACTIVATE</mat-slide-toggle>
+                            <mat-slide-toggle (change)="deActivationStatus(c.customerId)" 
+                            [checked]="c.enabled" *ngIf="c.enabled">ACTIVATE</mat-slide-toggle>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Registration Date</th>
+                    <th>Activation Status</th>
+                </tr>
+            </tfoot>
+        </table>
+        <mat-progress-bar *ngIf="loadData" mode="indeterminate"></mat-progress-bar>
+    </div>
+    <!-- /.card-body -->
+</div>
+<!-- /.card -->

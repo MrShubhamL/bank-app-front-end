@@ -1,0 +1,85 @@
+<nav  class="navbar navbar-expand-sm" style="background: #0353a8; color: white;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <h3 class="text-white">Student Portal</h3>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-white">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <a class="btn btn-outline-warning mx-1" routerLink="/registration" >Registration</a>
+          <a class="btn btn-outline-warning mx-1" routerLink="/login" >Login</a>
+        </form>
+      </div>
+    </div>
+  </nav>
+  
+<div class="col-lg-6 offset-lg-3 mt-4">
+    <div class="row">
+        <div class="m-3 bg-light">
+            <div class="m-2">
+                <h3 class="text-center">LOGIN</h3>
+            </div>
+            <form class="m-2" [formGroup]="form" (ngSubmit)="formSubmit()">
+                <div class="p-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Customer Email</mat-label>
+                        <input matInput placeholder="Email" type="email" formControlName="username">
+                        <mat-icon matSuffix>email</mat-icon>
+                        <mat-hint>Enter email address</mat-hint>
+                        @if (f['username'].errors) {
+                        <mat-error>Please Enter Email Address!</mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+                <div class="p-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input matInput placeholder="Password" type="password" formControlName="password">
+                        <mat-icon matSuffix>password</mat-icon>
+                        <mat-hint>Enter your password</mat-hint>
+                        @if (f['password'].errors) {
+                        <mat-error>Please enter your password!</mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+
+                <div class="p-2">
+                    <button [disabled]="form.invalid" mat-stroked-button color="primary" class="example-full-width p-4"
+                        type="submit">
+                        <span *ngIf="submitted==false">LOGIN</span>
+                        <mat-spinner *ngIf="submitted" diameter="45" value="accent"></mat-spinner>
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

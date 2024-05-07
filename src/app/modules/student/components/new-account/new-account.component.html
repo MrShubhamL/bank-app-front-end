@@ -1,0 +1,87 @@
+<div class="col-lg-6 offset-lg-3 mt-4">
+    <div class="row">
+        <div class="m-3 bg-light">
+            <div class="m-2">
+                <h3 class="text-center">CUSTOMER REGISTRATION</h3>
+            </div>
+            <form class="m-2" (ngSubmit)="formSubmit()">
+                
+                <div class="p-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Account Number</mat-label>
+                        <input matInput placeholder="Account Number" type="number"
+                            [ngClass]="{ 'is-invalid': submitted && f['accountNumber'].errors }"
+                            [(ngModel)]="accountDetails.accountNumber" name="accountNumber">
+                        <mat-icon matSuffix>account_circle</mat-icon>
+                        <mat-hint>Enter Account Number</mat-hint>
+                        @if (f['accountNumber'].errors) {
+                        <mat-error>Please Create Account Number</mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+
+                <div class="p-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Account Balance</mat-label>
+                        <input matInput placeholder="Account Balance" type="number"
+                            [ngClass]="{ 'is-invalid': submitted && f['accountBalance'].errors }"
+                            [(ngModel)]="accountDetails.accountBalance" name="accountBalance">
+                        <mat-icon matSuffix>account_circle</mat-icon>
+                        <mat-hint>Add Account Balance</mat-hint>
+                        @if (f['accountBalance'].errors) {
+                        <mat-error>Please Create Account Number</mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+
+                <div class="p-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Select Bank</mat-label>
+                        <mat-select matInput
+                         [(ngModel)]="accountDetails.bankDetails" 
+                         name="bankDetails"
+                            [ngClass]="{ 'is-invalid': submitted && f['bankDetails'].errors }">
+                            @for (bank of bankDetail; track bank) {
+                            <mat-option [value]="bank.bankId">{{bank.bankName}}</mat-option>
+                            }
+                        </mat-select>
+                        <mat-hint>Select Bank Name</mat-hint>
+                        @if (f['bankDetails'].errors) {
+                            <mat-error>Please Select Bank</mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+
+                <div class="p-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Account Type</mat-label>
+                        <mat-select matInput 
+                        [(ngModel)]="accountDetails.accountTpe" name="accountTpe"
+                            [ngClass]="{ 'is-invalid': submitted && f['accountTpe'].errors }">
+                            <mat-option value="SAVING">SAVING</mat-option>
+                            <mat-option value="CURRENT">CURRENT</mat-option>
+                        </mat-select>
+                        <mat-hint>Select Account Type</mat-hint>
+                        @if (f['accountTpe'].errors) {
+                            <mat-error>Please Select Account Type</mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+
+                <div class="p-2 row">
+                    <div class="col-lg-6">
+                        <button [disabled]="form.invalid" mat-stroked-button color="primary"
+                            class="example-full-width p-4" type="submit">
+                            <span *ngIf="submitted==false">REGISTER</span>
+                            <mat-spinner *ngIf="submitted" diameter="45" value="accent"></mat-spinner>
+                        </button>
+                    </div>
+                    <div class="col-lg-6">
+                        <a mat-stroked-button color="accent" class="example-full-width p-4">RESET</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
